@@ -29,8 +29,8 @@ public class OutputText {
             debtorsList.setText("Keine Schuldner vorhanden.");
         } else {
             StringBuilder builder = new StringBuilder();
-            for(String d: debtorArray) {
-                builder.append(d + "\n\n");
+            for(int i = debtorArray.length; i > 0; i--) {
+                builder.append(debtorArray[i - 1] + "\n\n");
             }
             debtorsList.setText(builder.toString());
         }
