@@ -6,15 +6,20 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
 import ch.ak.comfortabledebtregister.MainActivity;
+import ch.ak.comfortabledebtregister.methods.FlippChecker;
 
 public class SensorProvider implements SensorEventListener {
 
     private SensorManager sensorManager;
     private SensorEventDelegator sensorEventDelegator;
+    private FlippChecker flippChecker = new FlippChecker();
+
+    public SensorProvider(SensorEventDelegator sensorEventDelegator) {
+        this.sensorEventDelegator = sensorEventDelegator;
+    }
 
     public void passSensorManager(SensorManager sensorManagerActivity) {
         sensorManager = sensorManagerActivity;
-        sensorEventDelegator = new MainActivity();
     }
 
     public void onPause() {
@@ -31,7 +36,8 @@ public class SensorProvider implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        sensorEventDelegator.onAcceleratorChange(true);
+        boolean isFlipped = flippChecker.phoneFlippedDown(sensorEvent);
+        sensorEventDelegator.onAcceleratorChange(isFlipped);
     }
 
     @Override
