@@ -7,9 +7,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-
 import java.text.DecimalFormat;
 import java.util.HashSet;
 import java.util.Set;
