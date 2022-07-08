@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import ch.ak.comfortabledebtregister.methods.OutputText;
@@ -23,8 +24,8 @@ public class ResultActivity extends AppCompatActivity {
     }
 
     private void displayDebtPeople() {
-        TextView debtorsList = (TextView) findViewById(R.id.debtors);
-        outputText.displayDebtPeople(getIntent().getExtras(), preferences, debtorsList);
+        LinearLayout debtorsList = (LinearLayout) findViewById(R.id.debtors);
+        outputText.displayDebtPeople(getIntent().getExtras(), preferences, debtorsList, this);
     }
 
 }
