@@ -13,6 +13,9 @@ import ch.ak.comfortabledebtregister.ResultActivity;
 
 public class DebtValidation {
 
+    private String errorMessageString = "Name ist zu kurz(<4), zu lang(>40), oder enthält unerlaubte Zeichen.\n" +
+            "Oder der Betrag ist zu klein oder über 1M.";
+
     public boolean checkIfInputIsValid(String name, double debt) {
         String regex = "^[A-Za-z\\s]*$";
         Pattern pattern = Pattern.compile(regex);
@@ -37,6 +40,24 @@ public class DebtValidation {
         converted.add(name);
         converted.add(stringDebt);
         return converted;
+    }
+
+    public Intent resetAndRegister(Intent intent, ArrayList<String> values,
+                                   EditText nameInput, EditText debtInput, TextView errorMessage) {
+        intent.putExtra("name", values.get(0));
+        intent.putExtra("debt", Double.valueOf(values.get(1)));
+        resetNames(nameInput, debtInput, errorMessage);
+        return intent;
+    }
+
+    public void resetNames(EditText nameInput, EditText debtInput, TextView errorMessage) {
+        nameInput.setText("");
+        errorMessage.setText("");
+        debtInput.setText("");
+    }
+
+    public void setErrorMessage(TextView errorMessage) {
+        errorMessage.setText(errorMessageString);
     }
 
 }

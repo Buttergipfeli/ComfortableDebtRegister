@@ -43,9 +43,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventDelega
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getBaseContext(), ResultActivity.class);
-                nameInput.setText("");
-                errorMessage.setText("");
-                debtInput.setText("");
+                debtValidation.resetNames(nameInput, debtInput, errorMessage);
                 startActivity(intent);
             }
         });
@@ -57,15 +55,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventDelega
                 ArrayList<String> values = debtValidation.convertInput(nameInput, debtInput, errorMessage);
                 if (debtValidation.checkIfInputIsValid(values.get(0), Double.valueOf(values.get(1)))) {
                     Intent intent = new Intent(getBaseContext(), ResultActivity.class);
-                    intent.putExtra("name", values.get(0));
-                    intent.putExtra("debt", Double.valueOf(values.get(1)));
-                    nameInput.setText("");
-                    errorMessage.setText("");
-                    debtInput.setText("");
+                    debtValidation.resetAndRegister(intent, values, nameInput, debtInput, errorMessage);
                     startActivity(intent);
                 } else {
-                    errorMessage.setText("Name ist zu kurz(<4), zu lang(>40), oder enthält unerlaubte Zeichen.\n" +
-                            "Oder der Betrag ist zu klein oder über 1M.");
+                    debtValidation.setErrorMessage(errorMessage);
                 }
             }
         });
@@ -89,15 +82,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventDelega
             ArrayList<String> values = debtValidation.convertInput(nameInput, debtInput, errorMessage);
             if (debtValidation.checkIfInputIsValid(values.get(0), Double.valueOf(values.get(1)))) {
                 Intent intent = new Intent(getBaseContext(), ResultActivity.class);
-                intent.putExtra("name", values.get(0));
-                intent.putExtra("debt", Double.valueOf(values.get(1)));
-                nameInput.setText("");
-                errorMessage.setText("");
-                debtInput.setText("");
+                debtValidation.resetAndRegister(intent, values, nameInput, debtInput, errorMessage);
                 startActivity(intent);
             } else {
-                errorMessage.setText("Name ist zu kurz(<4), zu lang(>40), oder enthält unerlaubte Zeichen.\n" +
-                        "Oder der Betrag ist zu klein oder über 1M.");
+                debtValidation.setErrorMessage(errorMessage);
             }
         }
     }
