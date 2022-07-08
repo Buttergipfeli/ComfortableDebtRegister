@@ -43,6 +43,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventDelega
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getBaseContext(), ResultActivity.class);
+                nameInput.setText("");
+                errorMessage.setText("");
+                debtInput.setText("");
                 startActivity(intent);
             }
         });
@@ -56,6 +59,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventDelega
                     Intent intent = new Intent(getBaseContext(), ResultActivity.class);
                     intent.putExtra("name", values.get(0));
                     intent.putExtra("debt", Double.valueOf(values.get(1)));
+                    nameInput.setText("");
+                    errorMessage.setText("");
+                    debtInput.setText("");
                     startActivity(intent);
                 } else {
                     errorMessage.setText("Name ist zu kurz(<4), zu lang(>40), oder enthält unerlaubte Zeichen.\n" +
@@ -85,6 +91,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventDelega
                 Intent intent = new Intent(getBaseContext(), ResultActivity.class);
                 intent.putExtra("name", values.get(0));
                 intent.putExtra("debt", Double.valueOf(values.get(1)));
+                nameInput.setText("");
+                errorMessage.setText("");
+                debtInput.setText("");
                 startActivity(intent);
             } else {
                 errorMessage.setText("Name ist zu kurz(<4), zu lang(>40), oder enthält unerlaubte Zeichen.\n" +

@@ -19,8 +19,8 @@ public class DebtValidation {
         Matcher matcher = pattern.matcher(name);
         boolean valid = matcher.matches();
         if (valid && name.length() <= 40
-                && debt < 1000000.0 && debt > 0
-                && name.length() > 4
+                && debt <= 1000000.0 && debt > 0
+                && name.length() >= 4
         ) {
             return true;
         }
